@@ -1,46 +1,91 @@
 <div class="add-report-container">
-  <h1>Nuevo Reporte</h1>
+  <div class="form-header">
+    <button (click)="goBack()" class="back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+    </button>
+    <h1 class="page-title">Nuevo Reporte</h1>
+  </div>
 
-  <!-- Mensaje de error centrado -->
+  <!-- Mensaje de error como toast -->
   <div *ngIf="errorMessage" class="error-overlay">
     <div class="error-message">{{ errorMessage }}</div>
   </div>
 
   <!-- Selección del estado del reporte -->
-  <label>Estado del Reporte:</label>
-  <div class="status-selection">
-    <label>
-      <input type="radio" name="status" [(ngModel)]="status" value="Activo" />
-      Activo
-    </label>
-    <label>
-      <input type="radio" name="status" [(ngModel)]="status" value="Inactivo" />
-      Inactivo
-    </label>
-  </div>
-
-  <!-- Cuadro visual que cambia de color según el estado seleccionado -->
-  <div [ngClass]="{'status-box-active': status==='Activo', 'status-box-inactive': status==='Inactivo'}" class="status-box">
-    {{ status }}
-  </div>
-
-  <!-- Resto del formulario -->
-  <label for="id">ID del Equipo:</label>
-  <input type="text" id="id" [(ngModel)]="id" placeholder="Ej: EQ-2024-001" />
-
-  <label for="description">Descripción del Problema:</label>
-  <textarea id="description" [(ngModel)]="description" placeholder="Describe el estado o problema..."></textarea>
-
-  <button (click)="takePhoto()">Capturar Foto</button>
-  
-  <div *ngIf="photo">
-    <div class="report-image-container">
-      <img [src]="photo" alt="Vista previa de la foto" class="report-image" />
+  <div class="form-group">
+    <label class="form-label">Estado del Reporte:</label>
+    <div class="status-selection">
+      <div class="status-option">
+        <input type="radio" id="status-active" name="status" [(ngModel)]="status" value="Activo" class="status-radio">
+        <label for="status-active" class="status-label active">
+          <div class="status-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <span class="status-text">Activo</span>
+        </label>
+      </div>
+      
+      <div class="status-option">
+        <input type="radio" id="status-inactive" name="status" [(ngModel)]="status" value="Inactivo" class="status-radio">
+        <label for="status-inactive" class="status-label inactive">
+          <div class="status-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+          </div>
+          <span class="status-text">Inactivo</span>
+        </label>
+      </div>
     </div>
   </div>
 
-  <label for="technician">Responsable:</label>
-  <input type="text" id="technician" [(ngModel)]="technician" placeholder="Nombre del técnico" />
+  <!-- ID del Equipo -->
+  <div class="form-group">
+    <label for="id" class="form-label">ID del Equipo:</label>
+    <input type="text" id="id" [(ngModel)]="id" placeholder="Ej: EQ-2024-001" class="form-control" />
+  </div>
 
-  <button (click)="saveReport()">Guardar Reporte</button>
+  <!-- Descripción -->
+  <div class="form-group">
+    <label for="description" class="form-label">Descripción del Problema:</label>
+    <textarea id="description" [(ngModel)]="description" placeholder="Describe el estado o problema..." class="form-control"></textarea>
+  </div>
+
+  <!-- Foto -->
+  <div class="form-group photo-section">
+    <label class="form-label">Foto del Reporte:</label>
+    <button (click)="takePhoto()" class="camera-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+        <circle cx="12" cy="13" r="4"></circle>
+      </svg>
+      Capturar Foto
+    </button>
+    
+    <div *ngIf="photo" class="photo-preview">
+      <img [src]="photo" alt="Vista previa de la foto" class="preview-image" />
+    </div>
+  </div>
+
+  <!-- Responsable -->
+  <div class="form-group">
+    <label for="technician" class="form-label">Responsable:</label>
+    <input type="text" id="technician" [(ngModel)]="technician" placeholder="Nombre del técnico" class="form-control" />
+  </div>
+
+  <!-- Botón guardar -->
+  <button 
+    (click)="saveReport()" 
+    class="submit-btn"
+    [disabled]="!id || !description || !technician || !photo">
+    Guardar Reporte
+  </button>
 </div>

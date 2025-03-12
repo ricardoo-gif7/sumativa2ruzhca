@@ -1,47 +1,59 @@
-<div class="container">
-  <h1>App Reports</h1>
-
-  <div class="header">
-    <h2>Lista de Reportes</h2>
-    <button (click)="navigateToAddReport()" class="add-report-btn">+</button>
+<div class="report-container">
+  <div class="app-header">
+    <h1 class="app-title">App Reports</h1>
   </div>
 
-  <div *ngIf="reports && reports.length > 0">
-    <div *ngFor="let report of reports" class="report-card">
-      
-      <!-- Encabezado: ID a la izquierda, Fecha/Hora centrada, y botones de acción a la derecha -->
-      <div class="report-header">
-        <div class="header-id">#{{ report.id }}</div>
-        <div class="header-datetime">{{ report.date }}</div>
-        <div class="header-actions">
-          <button (click)="viewDetails(report.id)" class="icon-btn view-btn">
-            <img src="assets/icons/eye.svg" alt="Icono ver">
-          </button>
-          <button (click)="deleteReport(report.id)" class="icon-btn delete-btn">
-            <img src="assets/icons/trash.svg" alt="Icono eliminar">
-          </button>
-        </div>
+  <div *ngIf="reports && reports.length > 0" class="reports-list">
+    <div *ngFor="let report of reports" class="report-card fade-in">
+      <div class="card-header">
+        <div class="report-id">#{{ report.id }}</div>
+        <div class="report-date">{{ report.date }}</div>
       </div>
       
-      <!-- Cuerpo de la tarjeta: Imagen a la izquierda, detalles a la derecha -->
-      <div class="report-content">
-        <div class="image-container">
-          <img [src]="report.photo" alt="Foto del reporte" class="report-image">
-        </div>
-        <div class="details-container">
-          <p class="description">{{ report.description }}</p>
-          <p class="technician"><strong>Responsable:</strong> {{ report.technician }}</p>
-          <div class="status-box" 
+      <div class="card-image">
+        <img [src]="report.photo" alt="Foto del reporte" class="report-image">
+      </div>
+      
+      <div class="card-content">
+        <p class="report-description">{{ report.description }}</p>
+        <p class="report-technician"><strong>Responsable:</strong> {{ report.technician }}</p>
+        
+        <div class="card-footer">
+          <div class="status-badge" 
                [ngClass]="{'status-active': report.status === 'Activo', 'status-inactive': report.status !== 'Activo'}">
             {{ report.status }}
           </div>
+          
+          <div class="action-buttons">
+            <button (click)="viewDetails(report.id)" class="action-btn view-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+            <button (click)="deleteReport(report.id)" class="action-btn delete-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <line x1="10" y1="11" x2="10" y2="17"></line>
+                <line x1="14" y1="11" x2="14" y2="17"></line>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      
     </div>
   </div>
 
   <div *ngIf="!reports || reports.length === 0" class="no-reports">
     <p>No hay reportes disponibles.</p>
+    <button (click)="navigateToAddReport()" class="start-btn">Crear primer reporte</button>
   </div>
+  
+  <button (click)="navigateToAddReport()" class="add-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </button>
 </div>
