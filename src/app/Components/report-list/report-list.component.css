@@ -245,3 +245,17 @@
     height: 40px;
   }
 }
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer; /* Indica que es clickeable */
+  transition: transform 0.2s ease; /* Animación al hacer hover */
+}
+
+.status-badge:hover {
+  transform: scale(1.05);
+}

@@ -20,7 +20,8 @@
         
         <div class="card-footer">
           <div class="status-badge" 
-               [ngClass]="{'status-active': report.status === 'Activo', 'status-inactive': report.status !== 'Activo'}">
+               [ngClass]="{'status-active': report.status === 'Activo', 'status-inactive': report.status !== 'Activo'}"
+               (click)="toggleStatus(report.id, $event)">
             {{ report.status }}
           </div>
           

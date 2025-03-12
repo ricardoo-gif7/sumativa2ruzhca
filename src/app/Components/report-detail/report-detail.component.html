@@ -9,6 +9,7 @@
     <h1 class="page-title">Detalle del Reporte</h1>
   </div>
 
+
   <div *ngIf="report" class="detail-card">
     <div class="card-header">
       <div class="report-id">#{{ report.id }}</div>
@@ -30,14 +31,16 @@
         <div class="detail-value">{{ report.technician }}</div>
       </div>
       
+      
       <div class="detail-item">
-        <div class="detail-badge" 
+        <div class="detail-label">Estado:</div>
+        <div class="status-badge" 
              [ngClass]="{'status-active': report.status === 'Activo', 'status-inactive': report.status !== 'Activo'}"
-             class="status-badge">
+             (click)="toggleStatus()">
           {{ report.status }}
         </div>
       </div>
-      
+
       <div class="action-buttons">
         <button (click)="goBack()" class="action-btn back-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

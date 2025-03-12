@@ -200,3 +200,18 @@
     flex-direction: column;
   }
 }
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 10px;
+  cursor: pointer; /* Indica que es clickeable */
+  transition: transform 0.2s ease; /* Animación al hacer hover */
+}
+
+.status-badge:hover {
+  transform: scale(1.05);
+}

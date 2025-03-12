@@ -42,4 +42,17 @@ export class ReportService {
     this.reports = this.reports.filter(report => report.id !== id);
     this.saveReports();
   }
+
+  // En src/app/Services/report.service.ts
+toggleReportStatus(id: string): void {
+  const reports = this.getReports();
+  const index = reports.findIndex(report => report.id === id);
+  
+  if (index !== -1) {
+    // Cambiar entre 'Activo' e 'Inactivo'
+    reports[index].status = reports[index].status === 'Activo' ? 'Inactivo' : 'Activo';
+    localStorage.setItem('reports', JSON.stringify(reports));
+  }
+}
+
 }

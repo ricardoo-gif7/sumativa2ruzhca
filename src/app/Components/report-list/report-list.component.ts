@@ -43,4 +43,11 @@ export class ReportListComponent implements OnInit {
     this.router.navigate(['/add-report']);
   }
   
+  // En src/app/Components/report-list/report-list.component.ts
+  toggleStatus(id: string, event: Event): void {
+    event.stopPropagation(); // Evita que se active el click del card
+    this.reportService.toggleReportStatus(id);
+    this.reports = this.reportService.getReports(); // Actualiza la lista
+  }
+
 }

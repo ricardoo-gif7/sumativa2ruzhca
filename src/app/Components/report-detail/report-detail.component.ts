@@ -37,4 +37,14 @@ export class ReportDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/report-list']);
   }
+
+  // En src/app/Components/report-detail/report-detail.component.ts
+toggleStatus(): void {
+  if (this.report) {
+    this.reportService.toggleReportStatus(this.report.id);
+    // Actualizamos el reporte local para mostrar el cambio inmediatamente
+    this.report = this.reportService.getReportById(this.report.id);
+  }
+}
+
 }
