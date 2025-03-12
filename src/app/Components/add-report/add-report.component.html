@@ -1,0 +1,46 @@
+<div class="add-report-container">
+  <h1>Nuevo Reporte</h1>
+
+  <!-- Mensaje de error centrado -->
+  <div *ngIf="errorMessage" class="error-overlay">
+    <div class="error-message">{{ errorMessage }}</div>
+  </div>
+
+  <!-- Selección del estado del reporte -->
+  <label>Estado del Reporte:</label>
+  <div class="status-selection">
+    <label>
+      <input type="radio" name="status" [(ngModel)]="status" value="Activo" />
+      Activo
+    </label>
+    <label>
+      <input type="radio" name="status" [(ngModel)]="status" value="Inactivo" />
+      Inactivo
+    </label>
+  </div>
+
+  <!-- Cuadro visual que cambia de color según el estado seleccionado -->
+  <div [ngClass]="{'status-box-active': status==='Activo', 'status-box-inactive': status==='Inactivo'}" class="status-box">
+    {{ status }}
+  </div>
+
+  <!-- Resto del formulario -->
+  <label for="id">ID del Equipo:</label>
+  <input type="text" id="id" [(ngModel)]="id" placeholder="Ej: EQ-2024-001" />
+
+  <label for="description">Descripción del Problema:</label>
+  <textarea id="description" [(ngModel)]="description" placeholder="Describe el estado o problema..."></textarea>
+
+  <button (click)="takePhoto()">Capturar Foto</button>
+  
+  <div *ngIf="photo">
+    <div class="report-image-container">
+      <img [src]="photo" alt="Vista previa de la foto" class="report-image" />
+    </div>
+  </div>
+
+  <label for="technician">Responsable:</label>
+  <input type="text" id="technician" [(ngModel)]="technician" placeholder="Nombre del técnico" />
+
+  <button (click)="saveReport()">Guardar Reporte</button>
+</div>

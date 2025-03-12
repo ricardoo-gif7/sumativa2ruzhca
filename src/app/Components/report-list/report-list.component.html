@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>App Reports</h1>
+
+  <div class="header">
+    <h2>Lista de Reportes</h2>
+    <button (click)="navigateToAddReport()" class="add-report-btn">+</button>
+  </div>
+
+  <div *ngIf="reports && reports.length > 0">
+    <div *ngFor="let report of reports" class="report-card">
+      
+      <!-- Encabezado: ID a la izquierda, Fecha/Hora centrada, y botones de acción a la derecha -->
+      <div class="report-header">
+        <div class="header-id">#{{ report.id }}</div>
+        <div class="header-datetime">{{ report.date }}</div>
+        <div class="header-actions">
+          <button (click)="viewDetails(report.id)" class="icon-btn view-btn">
+            <img src="assets/icons/eye.svg" alt="Icono ver">
+          </button>
+          <button (click)="deleteReport(report.id)" class="icon-btn delete-btn">
+            <img src="assets/icons/trash.svg" alt="Icono eliminar">
+          </button>
+        </div>
+      </div>
+      
+      <!-- Cuerpo de la tarjeta: Imagen a la izquierda, detalles a la derecha -->
+      <div class="report-content">
+        <div class="image-container">
+          <img [src]="report.photo" alt="Foto del reporte" class="report-image">
+        </div>
+        <div class="details-container">
+          <p class="description">{{ report.description }}</p>
+          <p class="technician"><strong>Responsable:</strong> {{ report.technician }}</p>
+          <div class="status-box" 
+               [ngClass]="{'status-active': report.status === 'Activo', 'status-inactive': report.status !== 'Activo'}">
+            {{ report.status }}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div *ngIf="!reports || reports.length === 0" class="no-reports">
+    <p>No hay reportes disponibles.</p>
+  </div>
+</div>

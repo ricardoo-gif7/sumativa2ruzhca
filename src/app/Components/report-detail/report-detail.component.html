@@ -1,0 +1,16 @@
+<div *ngIf="report" class="report-detail-container">
+    <h1>Detalle del Reporte</h1>
+    <p><strong>ID:</strong> {{ report.id }}</p>
+    <p><strong>Fecha:</strong> {{ report.date }}</p>
+    <p><strong>Responsable:</strong> {{ report.technician }}</p>
+    <p><strong>Descripción:</strong> {{ report.description }}</p>
+    <img [src]="report.photo" alt="Foto del Reporte" />
+  
+    <button (click)="deleteReport()">Eliminar Reporte</button>
+    <button (click)="goBack()">Regresar</button>
+  </div>
+  <div *ngIf="!report">
+    <p>Reporte no encontrado.</p>
+    <button (click)="goBack()">Regresar</button>
+  </div>
+  
