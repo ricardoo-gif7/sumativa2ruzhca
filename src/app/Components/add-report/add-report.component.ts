@@ -56,4 +56,8 @@ export class AddReportComponent implements OnInit {
       }, 3000);
     }
   }
+
+  goBack(): void {
+    this.router.navigate(['/report-list']);
+  }
 }

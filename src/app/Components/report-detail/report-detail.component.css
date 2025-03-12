@@ -1,30 +1,202 @@
+/* Estilos para report-detail.component.css */
 .report-detail-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 0;
+  color: var(--text-primary);
+  background: transparent;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.page-title {
+  text-align: center;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.detail-card {
+  background-color: var(--dark-surface);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-id {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--accent-blue);
+}
+
+.report-date {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  overflow: hidden;
+}
+
+.report-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.detail-item {
+  margin-bottom: 15px;
+}
+
+.detail-label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.status-active {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-inactive {
+  background-color: rgba(255, 82, 82, 0.15);
+  color: var(--danger);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.back-button {
+  background-color: var(--dark-surface);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.delete-button {
+  background-color: rgba(255, 82, 82, 0.15);
+  color: var(--danger);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 82, 82, 0.25);
+}
+
+.not-found {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.not-found p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .report-detail-container {
+    padding: 15px;
   }
   
-  .report-detail-container img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 15px;
+  .card-header {
+    padding: 12px;
   }
   
-  .report-detail-container button {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .card-content {
+    padding: 15px;
+  }
+}
+
+/* Optimizaciones específicas para Redmi Note 14 */
+@media (max-width: 450px) {
+  .form-header {
+    margin-bottom: 20px;
   }
   
-  .report-detail-container button:hover {
-    background-color: #0056b3;
+  .back-btn {
+    width: 35px;
+    height: 35px;
   }
   
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+}
